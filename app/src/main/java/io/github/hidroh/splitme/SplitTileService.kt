@@ -81,7 +81,9 @@ class SplitTileService : TileService() {
   }
 
   private fun prompt() {
-    showDialog(AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert)
+    val isDarkTheme = (resources.configuration.uiMode
+            and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+    showDialog(AlertDialog.Builder(this, if (isDarkTheme) android.R.style.Theme_DeviceDefault_Dialog_Alert else android.R.style.Theme_DeviceDefault_Light_Dialog_Alert)
         .setMessage(R.string.accessibility_required)
         .setNegativeButton(android.R.string.cancel, null)
         .setPositiveButton(android.R.string.ok) { _, _ ->
